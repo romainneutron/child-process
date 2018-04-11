@@ -48,10 +48,6 @@ class Process extends EventEmitter
     */
     public function __construct($cmd, $cwd = null, array $env = null, array $options = array())
     {
-        if (substr(strtolower(PHP_OS), 0, 3) === 'win') {
-            throw new \LogicException('Windows isn\'t supported due to the blocking nature of STDIN/STDOUT/STDERR pipes.');
-        }
-
         if (!function_exists('proc_open')) {
             throw new \LogicException('The Process class relies on proc_open(), which is not available on your PHP installation.');
         }
